@@ -1,0 +1,23 @@
+name: python application github actions
+
+on: [push]
+
+job:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: set up python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python version: 3.8
+    - name: install dependencies
+      run: |
+        make install
+    - name: Lint with pylint
+      run: |
+        make lint
+    - name: Format code
+      run: |
+        make format
